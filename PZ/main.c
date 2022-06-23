@@ -9,6 +9,20 @@
 #include <xc.h>
 #include "main.h"
 
+uint8_t time_flag = 0; // для конвертування температури
+uint16_t timer_val = 0; 
+uint16_t temperature;
+uint8_t minus;
+uint8_t isTemp;
+uint8_t AlarmTemp, AlarmTempT; // температура при якій буде вимикатись тен
+uint8_t TempEn, TempEnT;
+uint8_t meas_temp = 1; // чи вімірювати температуру
+uint8_t isTempReady;
+
+uint16_t sound_delay;
+uint8_t sound_enable = 0;
+
+
 uint8_t TxtBuf[21]; // буфер для дисплея
 
 uint8_t read_key = 0; // чи можна опитувати кнопки
@@ -56,7 +70,7 @@ uint8_t const compile_time[9] = __TIME__; // hh:mm:ss
 __EEPROM_DATA(24, 20, 33, 0, 0, 0, 0, 0); // ініціалізація еепром, 
 // 0 - ціла частина опору тена
 // 1 - дробова частина опору тена
-// 2 -
+// 2 - потужність після навантаження
 // 3 -
 
 
@@ -66,12 +80,13 @@ const uint8_t symbol_3[8] = {0x00, 0x04, 0x1E, 0x1F, 0x1E, 0x04, 0x00, 0x00}; //
 const uint8_t symbol_4[8] = {0x00, 0x04, 0x0F, 0x1F, 0x0F, 0x04, 0x00, 0x00}; // <--
 const uint8_t symbol_5[8] = {0x00, 0x00, 0x1F, 0x1F, 0x1F, 0x00, 0x00, 0x00}; // --
 const uint8_t symbol_6[8] = {0x00, 0x0E, 0x1F, 0x1B, 0x1F, 0x0E, 0x00, 0x00}; // o
+const uint8_t symbol_7[8] = {0x06, 0x09, 0x09, 0x06, 0x00, 0x00, 0x00, 0x00};
 
 void main(void) {
 
     static __bit whole_dec = 0; // признак, що будемо змінювати, цілі чи десяті
-
-
+    static __bit alarm_enable = 0; // признак, що будемо змінювати, градуси, чи дозвіл
+    static uint8_t powerOFF = 0;
 
 
     init_cpu(); // ініціалізація контроллера
@@ -92,6 +107,8 @@ void main(void) {
     __delay_ms(2000);
     CLRWDT();
     clearLCD();
+    AlarmTemp = read_eep(EE_ADR_ALARM_TEMP);
+    TempEn = read_eep(EE_ADR_TEMP_EN);
     power = read_eep(EE_ADR_LOAD_POWER); // початкове навантаження з еепром
     EncData = power;
     r_whole = read_eep(EE_ADR_R_WHOLE); // прочитати з еепром цілу частину опору
@@ -112,7 +129,23 @@ void main(void) {
             read_key = 0; // заборона опитування
         }
         pressed_key = key_GetKey(); // читаємо копку
+        // читаємо температуру
+        //if (meas_temp == 1)
+        //if (meas_temp)
+            isTempReady = readTemp_Single(&temperature, &minus, &time_flag, &timer_val);
 
+        if (TempEn) {
+            if ((temperature / 10) >= AlarmTemp) {
+                powerOFF = 1; // вимикаємо навантаження до перезапуску, або натискання кнопки
+                sound_enable = 1; // вмикаємо пікалку
+            }
+        }
+        
+        if (isTempReady == 1)
+            isTemp = 1;
+        if (isTempReady == 3)
+            isTemp = 3;
+        
         //опитування енкодера
         count_enc += EncPoll();
         if (((count_enc % 2) == 0) && !(count_enc == 0)) { // це всьо для енкодера
@@ -143,16 +176,20 @@ void main(void) {
             coef = 220.0 / U_real; //коефіцієнт, для корекції потужності
             U_summ = 0; // 
             getU = TRUE; // признак початку вимірів
-            if (!power_100)
-                t_power = (uint16_t)(power * coef * coef + 0.5); // скорегована потужність
-            else
-                t_power = 100;
-            if (t_power > 100) {// якщо потужність більше 100%
-                t_power = 100;
-                is_stab = 0;
-            } else
-                is_stab = 1;
-
+            
+            if (powerOFF && TempEn)  
+                t_power = 0; // вимикаємо тен
+            else {
+                if (!power_100)
+                    t_power = (uint16_t) (power * coef * coef + 0.5); // скорегована потужність
+                else
+                    t_power = 100;
+                if (t_power > 100) {// якщо потужність більше 100%
+                    t_power = 100;
+                    is_stab = 0;
+                } else
+                    is_stab = 1;
+            }
             LATAbits.LA3 = !LATAbits.LA3; // контроль
             watt_disp = calc_power(t_power, t_res, U_real);
         }
@@ -185,6 +222,9 @@ void main(void) {
                     power = EncData; // ставимо в рег. потужності, то що накрутили
                     is_power = 1;
                     power_100 = 0;
+                    powerOFF = 0;
+                    sound_enable = 0; // вимикаємо пікалку
+                    SOUND = 0;
                 }
 
                 if (pressed_key == KEY_OK_LONG_EVENT) { // якщо натиснули кнопку енкодера довго
@@ -213,8 +253,8 @@ void main(void) {
                 //++++++++++++++++++++++++++++++
             case SEL_EDIT_WHAT:
 
-                if (EncData > 3)
-                    EncData = 3;
+                if (EncData > 4)
+                    EncData = 4;
                 if (EncData < 0)
                     EncData = 0;
 
@@ -232,6 +272,10 @@ void main(void) {
                         lcdPrint("   SET 100% POWER   ");
                         break;
                     case 3:
+                        lcd_gotoxy(1, 3);
+                        lcdPrint("     ALARM TEMP     ");
+                        break;
+                    case 4:
                         lcd_gotoxy(1, 3);
                         lcdPrint("         EXIT        ");
                         break;                }
@@ -262,7 +306,19 @@ void main(void) {
                             power_100 = 1; // подамо 100% потужності
                             EncData = power;
                             break;
-                        case 3: // вихід
+                        case 3: // налаштування аварійної температури
+                            sel_main = SEL_EDIT_ALARM; // 
+                            clearLCD();
+                            AlarmTempT = AlarmTemp;
+                            alarm_enable = 0; // змінюємо спочатку температуру
+                            EncData = AlarmTempT;
+                            TempEnT = TempEn;
+                            lcd_gotoxy(1, 1);
+                            lcdPrint("     ALARM TEMP     ");
+                            lcd_gotoxy(1, 2);
+                            lcd_putc(0x03); // 
+                            break;                            
+                        case 4: // вихід
                             sel_main = SEL_MAIN; // будемо переходити в основне меню
                             clearLCD();
                             EncData = power;
@@ -324,6 +380,61 @@ void main(void) {
                     }
 
                     break;
+                    // налаштування аварійної температури
+            case SEL_EDIT_ALARM:
+
+                if (!alarm_enable) {
+                    if (EncData > 105)
+                        EncData = 105;
+                    if (EncData < 0)
+                        EncData = 0;
+                    AlarmTempT = (uint8_t) EncData;
+
+                } else {
+                    if (count_enc < 0)
+                        TempEnT = 0;
+                    if (count_enc > 0)
+                        TempEnT = 1;
+                }
+
+                sprintf(TxtBuf, "Temp:%u%c%-4c", AlarmTempT, 7, 'C');
+                lcd_gotoxy(2, 2);
+                lcdPrint(TxtBuf);
+
+                sprintf(TxtBuf, "Alarm:%-3s", (TempEnT) ? "ON" : "OFF");
+                lcd_gotoxy(2, 3);
+                lcdPrint(TxtBuf);
+
+                if (pressed_key == KEY_OK_EVENT) { // якщо натиснули кнопку енкодера
+                    alarm_enable = ~alarm_enable;
+                    if (alarm_enable) {
+
+                        lcd_gotoxy(1, 3);
+                        lcd_putc(0x03); // 
+                        lcd_gotoxy(1, 2);
+                        lcd_putc(' '); // 
+                    } else {
+                        EncData = (int8_t) AlarmTempT;
+                        lcd_gotoxy(1, 2);
+                        lcd_putc(0x03); //
+                        lcd_gotoxy(1, 3);
+                        lcd_putc(' '); // 
+
+                    }
+                }
+
+                if (pressed_key == KEY_OK_LONG_EVENT) { // якщо натиснули кнопку енкодера довго
+                    clearLCD();
+                    sel_main = SEL_MAIN; // будемо переходити в основне меню
+                    //p_watt = EncData;   // запишемо нову потужність тена
+                    EncData = power;
+                    AlarmTemp = AlarmTempT;
+                    TempEn = TempEnT;
+                    write_eep(EE_ADR_ALARM_TEMP, AlarmTemp); // запишемо цілу частину                    
+                    write_eep(EE_ADR_TEMP_EN, TempEn); // запишемо цілу частину
+                }
+
+                break;                    
                     //++++++++++++++++++++++++++++++++++++++++++
                     //  запис початкового навантаження в еепром
                     //++++++++++++++++++++++++++++++++++++++++++
@@ -409,8 +520,16 @@ void init_cpu(void) {
     //01 = 1:2 Prescale value
     //00 = 1:1 Prescale value
     TMR3IP = 1; // високий пріоритет
-    TMR3IE = 1; // переривання выд таймера 3
-
+    TMR3IE = 1; // переривання від таймера 3
+    
+    
+    // переивання від таймера 2 - для опитування ds18b20
+    T2CONbits.T2CKPS = 0b10; // 1x = Prescaler is 16
+    T2CONbits.T2OUTPS = 0b1111; // 1111 = 1:16 Postscale
+    TMR2ON = 0; // таймер вимкнено
+    IPR1bits.TMR2IP = 0; // низький пріритет
+    PIE1bits.TMR2IE = 1; // переривання від таймера 2
+    PR2 = 64; // 1.024 мс
 
     // зовнішнє переривання
     INT0IE = 1; // RB0 вхід зонішнього переривання
@@ -426,6 +545,11 @@ void init_cpu(void) {
     __delay_ms(50);
     //init_uart();
     initLCD();
+
+    DQ = 1;
+
+    init_ds18b20();
+
     is_power = 1;
     power_100 = 0; // потужніть, та що регулюємо
     cgrom_char(symbol_1, 1); // завантажуємо свої символи в LCD
@@ -434,6 +558,7 @@ void init_cpu(void) {
     cgrom_char(symbol_4, 4);
     cgrom_char(symbol_5, 5);
     cgrom_char(symbol_6, 6);
+    cgrom_char(symbol_7, 7);
     getU = TRUE; // початок вимірювання напруги
 
 }
@@ -446,7 +571,7 @@ void init_cpu(void) {
 //          -1 - назад  
 //=================================
 
-uint8_t EncPoll(void) {
+int8_t EncPoll(void) {
     static int8_t EncVal = 0;
     static uint8_t Enc = 0;
 
@@ -489,9 +614,53 @@ void show_lcd_main(void) {
     lcd_gotoxy(11, 2);
     lcdPrint(TxtBuf);
 
-    sprintf(TxtBuf, "Coeff:%f  ", coef);
+    sprintf(TxtBuf, "Coe:%.4f", coef);
     lcd_gotoxy(1, 4);
     lcdPrint(TxtBuf);
+
+    lcd_gotoxy(12, 4);
+    lcd_putc('T');
+    lcd_putc(':');
+    if (isTemp == 1) {
+        if (((temperature / 1000) % 10) == 0) {
+            if (((temperature / 100) % 10) == 0) {
+                lcd_putc(((temperature / 10) % 10) + 48);
+                lcd_putc('.');
+                lcd_putc((temperature % 10) + 48);
+                lcd_putc(7);
+                lcd_putc(' ');
+                lcd_putc(' ');
+                lcd_putc(' ');
+                //lcd_putc(' ');
+            } else {
+                lcd_putc(((temperature / 100) % 10) + 48);
+                lcd_putc(((temperature / 10) % 10) + 48);
+                lcd_putc('.');
+                lcd_putc((temperature % 10) + 48);
+                lcd_putc(7);
+                lcd_putc(' ');
+                lcd_putc(' ');
+                //lcd_putc(' ');
+            }
+        } else {
+            lcd_putc(((temperature / 1000) % 10) + 48);
+            lcd_putc(((temperature / 100) % 10) + 48);
+            lcd_putc(((temperature / 10) % 10) + 48);
+            lcd_putc('.');
+            lcd_putc((temperature % 10) + 48);
+            lcd_putc(7);
+            lcd_putc(' ');
+            //lcd_putc(' ');
+        }
+    } else if (isTemp == 3) {
+        lcd_putc('?');
+        lcd_putc('?');
+        lcd_putc('?');
+        lcd_putc(' ');
+        lcd_putc(' ');
+        lcd_putc(' ');
+        lcd_putc(' ');
+    }
 
     if ((tick_t1_1 <= 100) && (show_tp)) {
         //tick_t1_1 = 0;

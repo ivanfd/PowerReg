@@ -5,4 +5,6 @@ main.h  \
 interrupt.h  \
 eusart.h  \
 key.h  \
-eeprom.h 
+eeprom.h  \
+ds18b20.h  \
+onewire.h 

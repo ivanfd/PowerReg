@@ -19,6 +19,29 @@ void __interrupt(low_priority) Inter_lo(void) {
         tick_t1_1++;
         read_key = 1;
     }
+
+    if (TMR2IE && TMR2IF) { // any timer 1 interrupts?
+        TMR2IF = 0;
+        if (++timer_val >= 782) // затримка ~ 800мс
+        {
+            timer_val = 0;
+            time_flag = 1;
+            TMR2ON = 0;
+        }
+        if (sound_enable) {
+            TMR2ON = 1;
+            sound_delay++;
+            if (sound_delay <= 195) {
+                //sound_delay = 0;
+                SOUND = ~SOUND;
+            } else if ((sound_delay > 195)&&(sound_delay < 390))
+                SOUND = 0;
+            else {
+                SOUND = 0;
+                sound_delay = 0;
+            }
+        }
+    }
     return;
 }
 

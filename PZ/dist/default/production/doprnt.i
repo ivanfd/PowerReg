@@ -1,24 +1,24 @@
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\sources\\c99\\common\\doprnt.c"
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\sources\\c99\\common\\doprnt.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
 # 1 "<command line>" 1
 # 1 "<built-in>" 2
-# 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\language_support.h" 1 3
+# 1 "C:/Users/User/.mchp_packs/Microchip/PIC18F-K_DFP/1.6.125/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\sources\\c99\\common\\doprnt.c" 2
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\sources\\c99\\common\\doprnt.c" 2
 
 
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\ctype.h" 1 3
-
-
-
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\ctype.h" 1 3
 
 
 
 
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\features.h" 1 3
-# 8 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\ctype.h" 2 3
+
+
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\features.h" 1 3
+# 8 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\ctype.h" 2 3
 
 
 int isalnum(int);
@@ -35,28 +35,28 @@ int isupper(int);
 int isxdigit(int);
 int tolower(int);
 int toupper(int);
-# 3 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\sources\\c99\\common\\doprnt.c" 2
+# 3 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\sources\\c99\\common\\doprnt.c" 2
 
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\math.h" 1 3
-
-
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\musl_xc8.h" 1 3
-# 4 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\math.h" 2 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\math.h" 1 3
 
 
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\musl_xc8.h" 1 3
+# 4 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\math.h" 2 3
 
 
 
 
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdint.h" 1 3
-# 22 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdint.h" 3
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 1 3
-# 127 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 3
+
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\stdint.h" 1 3
+# 22 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\stdint.h" 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\bits/alltypes.h" 1 3
+# 127 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\bits/alltypes.h" 3
 typedef unsigned long uintptr_t;
-# 142 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 3
+# 142 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\bits/alltypes.h" 3
 typedef long intptr_t;
-# 158 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 3
+# 158 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\bits/alltypes.h" 3
 typedef signed char int8_t;
 
 
@@ -79,7 +79,7 @@ typedef long int32_t;
 
 
 typedef long long int64_t;
-# 188 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 3
+# 188 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\bits/alltypes.h" 3
 typedef long long intmax_t;
 
 
@@ -108,9 +108,9 @@ typedef unsigned long uint32_t;
 
 
 typedef unsigned long long uint64_t;
-# 229 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 3
+# 229 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\bits/alltypes.h" 3
 typedef unsigned long long uintmax_t;
-# 22 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdint.h" 2 3
+# 22 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\stdint.h" 2 3
 
 
 typedef int8_t int_fast8_t;
@@ -143,29 +143,29 @@ typedef uint24_t uint_fast24_t;
 typedef uint32_t uint_least32_t;
 
 typedef uint64_t uint_least64_t;
-# 144 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdint.h" 3
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/stdint.h" 1 3
+# 144 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\stdint.h" 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\bits/stdint.h" 1 3
 typedef int16_t int_fast16_t;
 typedef int32_t int_fast32_t;
 typedef uint16_t uint_fast16_t;
 typedef uint32_t uint_fast32_t;
-# 144 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdint.h" 2 3
-# 10 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\math.h" 2 3
+# 144 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\stdint.h" 2 3
+# 10 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\math.h" 2 3
 
 
 
 
 
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 1 3
-# 33 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\bits/alltypes.h" 1 3
+# 33 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\bits/alltypes.h" 3
 typedef float float_t;
 
 
 
 
 typedef double double_t;
-# 15 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\math.h" 2 3
-# 42 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\math.h" 3
+# 15 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\math.h" 2 3
+# 42 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\math.h" 3
 int __fpclassifyf(float);
 
 
@@ -175,7 +175,7 @@ int __fpclassifyf(float);
 
 
 int __signbitf(float);
-# 59 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\math.h" 3
+# 59 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\math.h" 3
 double acos(double);
 float acosf(float);
 long double acosl(long double);
@@ -431,10 +431,7 @@ long double nextafterl(long double, long double);
 double nexttoward(double, long double);
 float nexttowardf(float, long double);
 long double nexttowardl(long double, long double);
-
-
-
-
+# 323 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\math.h" 3
 double pow(double, double);
 __attribute__((nonreentrant)) float powf(float, float);
 long double powl(long double, long double);
@@ -516,7 +513,7 @@ long double tgammal(long double);
 double trunc(double);
 float truncf(float);
 long double truncl(long double);
-# 423 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\math.h" 3
+# 428 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\math.h" 3
 extern int signgam;
 
 double j0(double);
@@ -526,24 +523,24 @@ double jn(int, double);
 double y0(double);
 double y1(double);
 double yn(int, double);
-# 4 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\sources\\c99\\common\\doprnt.c" 2
+# 4 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\sources\\c99\\common\\doprnt.c" 2
 
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdarg.h" 1 3
-
-
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\stdarg.h" 1 3
 
 
 
 
 
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 1 3
+
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\bits/alltypes.h" 1 3
 
 
 
 
 
 typedef void * va_list[1];
-# 8 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdarg.h" 2 3
+# 8 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\stdarg.h" 2 3
 
 
 #pragma intrinsic(__va_start)
@@ -551,34 +548,34 @@ typedef void * va_list[1];
 
 extern void * __va_start(void);
 extern void * __va_arg(void *, ...);
-# 5 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\sources\\c99\\common\\doprnt.c" 2
+# 5 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\sources\\c99\\common\\doprnt.c" 2
 
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stddef.h" 1 3
-# 19 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stddef.h" 3
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 1 3
-# 18 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\stddef.h" 1 3
+# 19 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\stddef.h" 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\bits/alltypes.h" 1 3
+# 18 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\bits/alltypes.h" 3
 typedef long int wchar_t;
-# 122 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 3
+# 122 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\bits/alltypes.h" 3
 typedef unsigned size_t;
-# 132 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef long ptrdiff_t;
-# 19 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stddef.h" 2 3
-# 6 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\sources\\c99\\common\\doprnt.c" 2
+# 132 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef int ptrdiff_t;
+# 19 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\stddef.h" 2 3
+# 6 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\sources\\c99\\common\\doprnt.c" 2
 
 
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdio.h" 1 3
-# 24 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdio.h" 3
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 1 3
-# 11 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\stdio.h" 1 3
+# 24 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\stdio.h" 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\bits/alltypes.h" 1 3
+# 11 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\bits/alltypes.h" 3
 typedef void * __isoc_va_list[1];
-# 137 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 3
+# 137 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\bits/alltypes.h" 3
 typedef long ssize_t;
-# 246 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 3
+# 246 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\bits/alltypes.h" 3
 typedef long long off_t;
-# 399 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 3
+# 399 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\bits/alltypes.h" 3
 typedef struct _IO_FILE FILE;
-# 24 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdio.h" 2 3
-# 52 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdio.h" 3
+# 24 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\stdio.h" 2 3
+# 52 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\stdio.h" 3
 typedef union _G_fpos64_t {
  char __opaque[16];
  double __align;
@@ -631,28 +628,34 @@ char *gets(char *);
 int fputs(const char *restrict, FILE *restrict);
 int puts(const char *);
 
-#pragma printf_check(printf) const
-#pragma printf_check(vprintf) const
-#pragma printf_check(sprintf) const
-#pragma printf_check(snprintf) const
-#pragma printf_check(vsprintf) const
-#pragma printf_check(vsnprintf) const
-
+__attribute__((__format__(__printf__, 1, 2)))
 int printf(const char *restrict, ...);
+__attribute__((__format__(__printf__, 2, 3)))
 int fprintf(FILE *restrict, const char *restrict, ...);
+__attribute__((__format__(__printf__, 2, 3)))
 int sprintf(char *restrict, const char *restrict, ...);
+__attribute__((__format__(__printf__, 3, 4)))
 int snprintf(char *restrict, size_t, const char *restrict, ...);
 
+__attribute__((__format__(__printf__, 1, 0)))
 int vprintf(const char *restrict, __isoc_va_list);
 int vfprintf(FILE *restrict, const char *restrict, __isoc_va_list);
+__attribute__((__format__(__printf__, 2, 0)))
 int vsprintf(char *restrict, const char *restrict, __isoc_va_list);
+__attribute__((__format__(__printf__, 3, 0)))
 int vsnprintf(char *restrict, size_t, const char *restrict, __isoc_va_list);
 
+__attribute__((__format__(__scanf__, 1, 2)))
 int scanf(const char *restrict, ...);
+__attribute__((__format__(__scanf__, 2, 3)))
 int fscanf(FILE *restrict, const char *restrict, ...);
+__attribute__((__format__(__scanf__, 2, 3)))
 int sscanf(const char *restrict, const char *restrict, ...);
+
+__attribute__((__format__(__scanf__, 1, 0)))
 int vscanf(const char *restrict, __isoc_va_list);
 int vfscanf(FILE *restrict, const char *restrict, __isoc_va_list);
+__attribute__((__format__(__scanf__, 2, 0)))
 int vsscanf(const char *restrict, const char *restrict, __isoc_va_list);
 
 void perror(const char *);
@@ -695,12 +698,12 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
-# 8 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\sources\\c99\\common\\doprnt.c" 2
+# 8 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\sources\\c99\\common\\doprnt.c" 2
 
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdlib.h" 1 3
-# 21 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdlib.h" 3
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 1 3
-# 21 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdlib.h" 2 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\stdlib.h" 1 3
+# 21 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\stdlib.h" 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\bits/alltypes.h" 1 3
+# 21 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\stdlib.h" 2 3
 
 
 int atoi (const char *);
@@ -722,12 +725,23 @@ unsigned long long strtoull (const char *restrict, char **restrict, int);
 int rand (void);
 void srand (unsigned);
 
+void *malloc (size_t);
+void *calloc (size_t, size_t);
+void *realloc (void *, size_t);
+void free (void *);
+
           void abort (void);
 int atexit (void (*) (void));
           void exit (int);
           void _Exit (int);
 
 void *bsearch (const void *, const void *, size_t, size_t, int (*)(const void *, const void *));
+
+
+
+
+
+
 
 __attribute__((nonreentrant)) void qsort (void *, size_t, size_t, int (*)(const void *, const void *));
 
@@ -747,20 +761,14 @@ typedef struct { unsigned int quot, rem; } udiv_t;
 typedef struct { unsigned long quot, rem; } uldiv_t;
 udiv_t udiv (unsigned int, unsigned int);
 uldiv_t uldiv (unsigned long, unsigned long);
+# 9 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\sources\\c99\\common\\doprnt.c" 2
 
-
-
-
-
-size_t __ctype_get_mb_cur_max(void);
-# 9 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\sources\\c99\\common\\doprnt.c" 2
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\string.h" 1 3
-# 25 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\string.h" 3
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 1 3
-# 411 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\bits/alltypes.h" 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\string.h" 1 3
+# 25 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\string.h" 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\bits/alltypes.h" 1 3
+# 411 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\bits/alltypes.h" 3
 typedef struct __locale_struct * locale_t;
-# 25 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\string.h" 2 3
+# 25 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\string.h" 2 3
 
 
 void *memcpy (void *restrict, const void *restrict, size_t);
@@ -793,7 +801,7 @@ char *strtok (char *restrict, const char *restrict);
 size_t strlen (const char *);
 
 char *strerror (int);
-# 65 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\string.h" 3
+# 65 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\string.h" 3
 char *strtok_r (char *restrict, const char *restrict, char **restrict);
 int strerror_r (int, char *, size_t);
 char *stpcpy(char *restrict, const char *restrict);
@@ -810,13 +818,13 @@ size_t strxfrm_l (char *restrict, const char *restrict, size_t, locale_t);
 
 
 void *memccpy (void *restrict, const void *restrict, int, size_t);
-# 10 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\sources\\c99\\common\\doprnt.c" 2
+# 10 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\sources\\c99\\common\\doprnt.c" 2
 
-# 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\inline.h" 1 3
-# 11 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\sources\\c99\\common\\doprnt.c" 2
-# 55 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\sources\\c99\\common\\doprnt.c"
+# 1 "C:/Users/User/.mchp_packs/Microchip/PIC18F-K_DFP/1.6.125/xc8\\pic\\include\\inline.h" 1 3
+# 11 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\sources\\c99\\common\\doprnt.c" 2
+# 55 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\sources\\c99\\common\\doprnt.c"
 static int flags, prec, width;
-# 66 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\sources\\c99\\common\\doprnt.c"
+# 66 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\sources\\c99\\common\\doprnt.c"
 static char dbuf[80];
 
 
@@ -847,7 +855,7 @@ static int pad(FILE *fp, char *buf, int p)
 
     return (int)(strlen(buf) + (size_t)w);
 }
-# 259 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\sources\\c99\\common\\doprnt.c"
+# 259 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\sources\\c99\\common\\doprnt.c"
 static int ctoa(FILE *fp, char c)
 {
     int l, w;
@@ -873,7 +881,7 @@ static int ctoa(FILE *fp, char c)
 
     return l+1;
 }
-# 332 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\sources\\c99\\common\\doprnt.c"
+# 332 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\sources\\c99\\common\\doprnt.c"
 static int efgtoa(FILE *fp, long double f, char c)
 {
     char mode, nmode;
@@ -899,7 +907,7 @@ static int efgtoa(FILE *fp, long double f, char c)
 
 
     if (( __fpclassifyf(g) == 1 )) {
-        if ((0 ? isupper((int)c) : ((unsigned)((int)c)-'A') < 26)) {
+        if ((0 && isupper((int)c), ((unsigned)((int)c)-'A') < 26)) {
             strcpy(&dbuf[n], "INF");
         } else {
             strcpy(&dbuf[n], "inf");
@@ -908,7 +916,7 @@ static int efgtoa(FILE *fp, long double f, char c)
         return pad(fp, &dbuf[0], w);
     }
     if (( __fpclassifyf(g) == 0 )) {
-        if ((0 ? isupper((int)c) : ((unsigned)((int)c)-'A') < 26)) {
+        if ((0 && isupper((int)c), ((unsigned)((int)c)-'A') < 26)) {
             strcpy(&dbuf[n], "NAN");
         } else {
             strcpy(&dbuf[n], "nan");
@@ -1060,7 +1068,7 @@ static int efgtoa(FILE *fp, long double f, char c)
         dbuf[i] = sign ? '-' : '+';
         --w;
         --i;
-        dbuf[i] = (0 ? isupper((int)c) : ((unsigned)((int)c)-'A') < 26) ? 'E' : 'e';
+        dbuf[i] = (0 && isupper((int)c), ((unsigned)((int)c)-'A') < 26) ? 'E' : 'e';
         --w;
         strcpy(&dbuf[n], &dbuf[i]);
     }
@@ -1068,7 +1076,7 @@ static int efgtoa(FILE *fp, long double f, char c)
 
     return pad(fp, &dbuf[0], w);
 }
-# 568 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\sources\\c99\\common\\doprnt.c"
+# 568 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\sources\\c99\\common\\doprnt.c"
 static int stoa(FILE *fp, char *s)
 {
     char *cp, nuls[] = "(null)";
@@ -1143,7 +1151,7 @@ static int utoa(FILE *fp, unsigned long long d)
 
     return pad(fp, &dbuf[i], w);
 }
-# 692 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\sources\\c99\\common\\doprnt.c"
+# 692 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\sources\\c99\\common\\doprnt.c"
 static int vfpfcnvrt(FILE *fp, char *fmt[], va_list ap)
 {
     char c, *cp, ct[3];
@@ -1206,11 +1214,31 @@ static int vfpfcnvrt(FILE *fp, char *fmt[], va_list ap)
             }
         } else {
             width = atoi(*fmt);
-            while ((0 ? isdigit((*fmt)[0]) : ((unsigned)((*fmt)[0])-'0') < 10)) {
+            while ((0 && isdigit((*fmt)[0]), ((unsigned)((*fmt)[0])-'0') < 10)) {
                 ++*fmt;
             }
         }
-# 779 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\sources\\c99\\common\\doprnt.c"
+
+
+
+
+        if ((*fmt)[0] == '.') {
+            prec = 0;
+            ++*fmt;
+            if ((*fmt)[0] == '*') {
+                ++*fmt;
+                prec = (*(int *)__va_arg(*(int **)ap, (int)0));
+            } else {
+                prec = atoi(*fmt);
+                while ((0 && isdigit((*fmt)[0]), ((unsigned)((*fmt)[0])-'0') < 10)) {
+                    ++*fmt;
+                }
+            }
+        }
+
+
+
+
         ct[0] = (char)tolower((int)(*fmt)[0]);
         if (ct[0]) {
             ct[1] = (char)tolower((int)(*fmt)[1]);
@@ -1218,13 +1246,13 @@ static int vfpfcnvrt(FILE *fp, char *fmt[], va_list ap)
                 ct[2] = (char)tolower((int)(*fmt)[2]);
             }
         }
-# 814 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\sources\\c99\\common\\doprnt.c"
+# 814 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\sources\\c99\\common\\doprnt.c"
         if (*fmt[0] == 'c') {
             ++*fmt;
             c = (unsigned char)(*(int *)__va_arg(*(int **)ap, (int)0));
             return ctoa(fp, c);
         }
-# 942 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\sources\\c99\\common\\doprnt.c"
+# 942 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\sources\\c99\\common\\doprnt.c"
         if (ct[0] == 'f') {
 
             c = (*fmt)[0];
@@ -1236,7 +1264,7 @@ static int vfpfcnvrt(FILE *fp, char *fmt[], va_list ap)
         if (!strncmp(ct, "lf", ((sizeof("lf")/sizeof("lf"[0]))-1))) {
 
             c = (*fmt)[1];
-            if ((0 ? isupper((int)(*fmt)[0]) : ((unsigned)((int)(*fmt)[0])-'A') < 26)) {
+            if ((0 && isupper((int)(*fmt)[0]), ((unsigned)((int)(*fmt)[0])-'A') < 26)) {
                 f = (*(long double *)__va_arg(*(long double **)ap, (long double)0));
             } else {
                 f = (long double)(*(double *)__va_arg(*(double **)ap, (double)0));
@@ -1245,15 +1273,15 @@ static int vfpfcnvrt(FILE *fp, char *fmt[], va_list ap)
 
             return efgtoa(fp, f, c);
         }
-# 1171 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\sources\\c99\\common\\doprnt.c"
-        if (*fmt[0] == 's') {
+# 1171 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\sources\\c99\\common\\doprnt.c"
+        if (*fmt[0] == 's' || !strncmp(*fmt, "lls", ((sizeof("lls")/sizeof("lls"[0]))-1))) {
 
-            ++*fmt;
+   *fmt += *fmt[0] == 's' ? 1 : ((sizeof("lls")/sizeof("lls"[0]))-1);
             cp = (*(char * *)__va_arg(*(char * **)ap, (char *)0));
 
             return stoa(fp, cp);
         }
-# 1204 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\sources\\c99\\common\\doprnt.c"
+# 1204 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\sources\\c99\\common\\doprnt.c"
         if (*fmt[0] == 'u') {
 
             ++*fmt;
@@ -1261,7 +1289,7 @@ static int vfpfcnvrt(FILE *fp, char *fmt[], va_list ap)
 
             return utoa(fp, llu);
         }
-# 1372 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\sources\\c99\\common\\doprnt.c"
+# 1372 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\sources\\c99\\common\\doprnt.c"
         if ((*fmt)[0] == '%') {
             ++*fmt;
             fputc((int)'%', fp);

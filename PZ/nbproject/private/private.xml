@@ -7,10 +7,11 @@
             <file>file:/D:/Ivan/Electro/XC8/PowerReg/PZ/key.c</file>
             <file>file:/D:/Ivan/Electro/XC8/PowerReg/PZ/hd44780.h</file>
             <file>file:/D:/Ivan/Electro/XC8/PowerReg/PZ/hd44780.c</file>
-            <file>file:/D:/Ivan/Electro/XC8/PowerReg/PZ/eusart.c</file>
+            <file>file:/D:/Ivan/Electro/XC8/PowerReg/PZ/ds18b20.c</file>
+            <file>file:/D:/Ivan/Electro/XC8/PowerReg/PZ/onewire.c</file>
+            <file>file:/D:/Ivan/Electro/XC8/PowerReg/PZ/ds18b20.h</file>
             <file>file:/D:/Ivan/Electro/XC8/PowerReg/PZ/interrupt.c</file>
             <file>file:/D:/Ivan/Electro/XC8/PowerReg/PZ/main.c</file>
-            <file>file:/D:/Ivan/Electro/XC8/PowerReg/PZ/key.h</file>
         </group>
     </open-files>
 </project-private>

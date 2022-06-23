@@ -23,6 +23,8 @@
 #include "key.h"
 #include <stdlib.h>
 #include "eeprom.h"
+#include "ds18b20.h"
+#include "onewire.h"
 
 // PIC18F25K20 Configuration Bit Settings
 
@@ -89,7 +91,7 @@
 
 #define _XTAL_FREQ  64000000 // чатота контролера 64МГц
 
-#define VERSION "31.03.21"
+#define VERSION "19.06.22"
 
 #define SetBit(x,y)    do{ x |=  (1 << (y));} while(0)
 #define ClrBit(x,y)    do{ x &= ~(1 << (y));} while(0)
@@ -120,6 +122,11 @@
 #define EE_ADR_R_WHOLE 0
 #define EE_ADR_R_FRACT 1
 #define EE_ADR_LOAD_POWER 2
+#define EE_ADR_ALARM_TEMP 3
+//#define EE_ADR_TEMP_L 4
+#define EE_ADR_TEMP_EN 4
+
+
 
 
 
@@ -128,6 +135,7 @@
 #define SEL_EDIT_POWER 1
 #define SEL_START_POWER 2
 #define SEL_EDIT_WHAT 3
+#define SEL_EDIT_ALARM 4
 
 extern uint8_t tick_t0, tick_t1, tick_t1_1;
 extern uint16_t adc_res;
@@ -145,10 +153,14 @@ extern uint16_t t_power;
 extern int16_t err; // помилка дискретизації pdm-модулятора
 extern int8_t pp; // умовний признак знаку півперіода (1 - позитивний, -1 - від'ємний)
 extern int16_t ps; // ps пропорціональна постійної складової
+extern uint16_t sound_delay;
+extern uint8_t sound_enable;
 
+extern uint8_t time_flag;
+extern uint16_t timer_val;
 
 void init_cpu(void);
-uint8_t EncPoll( void );
+int8_t EncPoll( void );
 void lcd_preload(void);
 void show_lcd_main(void);
 uint16_t calc_power(uint8_t pwr, uint32_t res, uint16_t u_rl);
