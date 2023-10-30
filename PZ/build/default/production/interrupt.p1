@@ -849,197 +849,197 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;interrupt.c: 33:             sound_delay++;
 [e ++ _sound_delay -> -> 1 `i `us ]
 "34
-[; ;interrupt.c: 34:             if (sound_delay <= 195) {
-[e $ ! <= -> _sound_delay `ui -> -> 195 `i `ui 283  ]
+[; ;interrupt.c: 34:             if (sound_delay <= 400) {
+[e $ ! <= -> _sound_delay `ui -> -> 400 `i `ui 283  ]
 {
-"36
-[; ;interrupt.c: 36:                 LATCbits.LATC5 = ~LATCbits.LATC5;
-[e = . . _LATCbits 0 5 -> ~ -> . . _LATCbits 0 5 `i `uc ]
 "37
-[; ;interrupt.c: 37:             } else if ((sound_delay > 195)&&(sound_delay < 390))
+[; ;interrupt.c: 37:                 LATCbits.LATC5 = 1;
+[e = . . _LATCbits 0 5 -> -> 1 `i `uc ]
+"38
+[; ;interrupt.c: 38:             } else if ((sound_delay > 400)&&(sound_delay < 800))
 }
 [e $U 284  ]
 [e :U 283 ]
-[e $ ! && > -> _sound_delay `ui -> -> 195 `i `ui < -> _sound_delay `ui -> -> 390 `i `ui 285  ]
-"38
-[; ;interrupt.c: 38:                 LATCbits.LATC5 = 0;
+[e $ ! && > -> _sound_delay `ui -> -> 400 `i `ui < -> _sound_delay `ui -> -> 800 `i `ui 285  ]
+"39
+[; ;interrupt.c: 39:                 LATCbits.LATC5 = 0;
 [e = . . _LATCbits 0 5 -> -> 0 `i `uc ]
 [e $U 286  ]
-"39
-[; ;interrupt.c: 39:             else {
+"40
+[; ;interrupt.c: 40:             else {
 [e :U 285 ]
 {
-"40
-[; ;interrupt.c: 40:                 LATCbits.LATC5 = 0;
-[e = . . _LATCbits 0 5 -> -> 0 `i `uc ]
 "41
-[; ;interrupt.c: 41:                 sound_delay = 0;
-[e = _sound_delay -> -> 0 `i `us ]
+[; ;interrupt.c: 41:                 LATCbits.LATC5 = 0;
+[e = . . _LATCbits 0 5 -> -> 0 `i `uc ]
 "42
-[; ;interrupt.c: 42:             }
+[; ;interrupt.c: 42:                 sound_delay = 0;
+[e = _sound_delay -> -> 0 `i `us ]
+"43
+[; ;interrupt.c: 43:             }
 }
 [e :U 286 ]
 [e :U 284 ]
-"43
-[; ;interrupt.c: 43:         }
+"44
+[; ;interrupt.c: 44:         }
 }
 [e :U 282 ]
-"44
-[; ;interrupt.c: 44:     }
+"45
+[; ;interrupt.c: 45:     }
 }
 [e :U 280 ]
-"45
-[; ;interrupt.c: 45:     return;
-[e $UE 277  ]
 "46
-[; ;interrupt.c: 46: }
+[; ;interrupt.c: 46:     return;
+[e $UE 277  ]
+"47
+[; ;interrupt.c: 47: }
 [e :UE 277 ]
 }
 [v $root$_Inter_hi `(v ~T0 @X0 0 e ]
-"51
-[; ;interrupt.c: 51: void __attribute__((picinterrupt(("high_priority")))) Inter_hi(void) {
+"52
+[; ;interrupt.c: 52: void __attribute__((picinterrupt(("high_priority")))) Inter_hi(void) {
 [v _Inter_hi `(v ~T30 @X0 1 ef ]
 {
 [e :U _Inter_hi ]
 [f ]
-"52
-[; ;interrupt.c: 52: int16_t pulse = 0, lev = t_power + err;
+"53
+[; ;interrupt.c: 53: int16_t pulse = 0, lev = t_power + err;
 [v _pulse `s ~T0 @X0 1 a ]
 [e = _pulse -> -> 0 `i `s ]
 [v _lev `s ~T0 @X0 1 a ]
 [e = _lev -> + -> _t_power `ui -> _err `ui `s ]
-"55
-[; ;interrupt.c: 55:     if (INT0IE && INT0IF) {
+"56
+[; ;interrupt.c: 56:     if (INT0IE && INT0IF) {
 [e $ ! && _INT0IE _INT0IF 288  ]
 {
-"56
-[; ;interrupt.c: 56:         if (lev >= 50) pulse = 1;
+"57
+[; ;interrupt.c: 57:         if (lev >= 50) pulse = 1;
 [e $ ! >= -> _lev `i -> 50 `i 289  ]
 [e = _pulse -> -> 1 `i `s ]
 [e :U 289 ]
-"60
-[; ;interrupt.c: 60:         if (ps * pulse * pp > 0) pulse = 0;
+"61
+[; ;interrupt.c: 61:         if (ps * pulse * pp > 0) pulse = 0;
 [e $ ! > * * -> _ps `i -> _pulse `i -> _pp `i -> 0 `i 290  ]
 [e = _pulse -> -> 0 `i `s ]
 [e :U 290 ]
-"61
-[; ;interrupt.c: 61:         if (pulse) {
+"62
+[; ;interrupt.c: 62:         if (pulse) {
 [e $ ! != -> _pulse `i -> 0 `i 291  ]
 {
-"62
-[; ;interrupt.c: 62:             LATAbits.LA5 = 1;
-[e = . . _LATAbits 1 5 -> -> 1 `i `uc ]
 "63
-[; ;interrupt.c: 63:             err = lev - 100;
-[e = _err -> - -> _lev `i -> 100 `i `s ]
+[; ;interrupt.c: 63:             LATAbits.LA5 = 1;
+[e = . . _LATAbits 1 5 -> -> 1 `i `uc ]
 "64
-[; ;interrupt.c: 64:         } else {
+[; ;interrupt.c: 64:             err = lev - 100;
+[e = _err -> - -> _lev `i -> 100 `i `s ]
+"65
+[; ;interrupt.c: 65:         } else {
 }
 [e $U 292  ]
 [e :U 291 ]
 {
-"65
-[; ;interrupt.c: 65:             LATAbits.LA5 = 0;
-[e = . . _LATAbits 1 5 -> -> 0 `i `uc ]
 "66
-[; ;interrupt.c: 66:             err = lev;
-[e = _err _lev ]
+[; ;interrupt.c: 66:             LATAbits.LA5 = 0;
+[e = . . _LATAbits 1 5 -> -> 0 `i `uc ]
 "67
-[; ;interrupt.c: 67:         }
+[; ;interrupt.c: 67:             err = lev;
+[e = _err _lev ]
+"68
+[; ;interrupt.c: 68:         }
 }
 [e :U 292 ]
-"68
-[; ;interrupt.c: 68:         TMR3ON = 1;
-[e = _TMR3ON -> -> 1 `i `b ]
 "69
-[; ;interrupt.c: 69:         ps += pp * pulse;
-[e =+ _ps -> * -> _pp `i -> _pulse `i `s ]
+[; ;interrupt.c: 69:         TMR3ON = 1;
+[e = _TMR3ON -> -> 1 `i `b ]
 "70
-[; ;interrupt.c: 70:         pp = -pp;
+[; ;interrupt.c: 70:         ps += pp * pulse;
+[e =+ _ps -> * -> _pp `i -> _pulse `i `s ]
+"71
+[; ;interrupt.c: 71:         pp = -pp;
 [e = _pp -> -U -> _pp `i `c ]
-"72
-[; ;interrupt.c: 72:         if (zero <= (50 - 1))
-[e $ ! <= -> _zero `i - -> 50 `i -> 1 `i 293  ]
 "73
-[; ;interrupt.c: 73:             zero++;
+[; ;interrupt.c: 73:         if (zero <= (50 - 1))
+[e $ ! <= -> _zero `i - -> 50 `i -> 1 `i 293  ]
+"74
+[; ;interrupt.c: 74:             zero++;
 [e ++ _zero -> -> 1 `i `uc ]
 [e :U 293 ]
-"74
-[; ;interrupt.c: 74:         if (getU == 1) {
+"75
+[; ;interrupt.c: 75:         if (getU == 1) {
 [e $ ! == -> _getU `i -> 1 `i 294  ]
 {
-"75
-[; ;interrupt.c: 75:             getU = 0;
-[e = _getU -> -> 0 `i `uc ]
 "76
-[; ;interrupt.c: 76:             cnt_adc = 0;
-[e = _cnt_adc -> -> 0 `i `us ]
+[; ;interrupt.c: 76:             getU = 0;
+[e = _getU -> -> 0 `i `uc ]
 "77
-[; ;interrupt.c: 77:             zero = 0;
-[e = _zero -> -> 0 `i `uc ]
+[; ;interrupt.c: 77:             cnt_adc = 0;
+[e = _cnt_adc -> -> 0 `i `us ]
 "78
-[; ;interrupt.c: 78:         }
+[; ;interrupt.c: 78:             zero = 0;
+[e = _zero -> -> 0 `i `uc ]
+"79
+[; ;interrupt.c: 79:         }
 }
 [e :U 294 ]
-"79
-[; ;interrupt.c: 79:         INT0IF = 0;
-[e = _INT0IF -> -> 0 `i `b ]
 "80
-[; ;interrupt.c: 80:     }
+[; ;interrupt.c: 80:         INT0IF = 0;
+[e = _INT0IF -> -> 0 `i `b ]
+"81
+[; ;interrupt.c: 81:     }
 }
 [e :U 288 ]
-"83
-[; ;interrupt.c: 83:     if (ADIE && ADIF) {
+"84
+[; ;interrupt.c: 84:     if (ADIE && ADIF) {
 [e $ ! && _ADIE _ADIF 295  ]
 {
-"84
-[; ;interrupt.c: 84:         if (zero < 50) {
+"85
+[; ;interrupt.c: 85:         if (zero < 50) {
 [e $ ! < -> _zero `i -> 50 `i 296  ]
 {
-"85
-[; ;interrupt.c: 85:             U_meas = ((ADRESH << 8) + ADRESL);
-[e = _U_meas -> -> + << -> _ADRESH `i -> 8 `i -> _ADRESL `i `l `ul ]
 "86
-[; ;interrupt.c: 86:             U_meas *= U_meas;
-[e =* _U_meas _U_meas ]
+[; ;interrupt.c: 86:             U_meas = ((ADRESH << 8) + ADRESL);
+[e = _U_meas -> -> + << -> _ADRESH `i -> 8 `i -> _ADRESL `i `l `ul ]
 "87
-[; ;interrupt.c: 87:             U_summ += U_meas;
-[e =+ _U_summ _U_meas ]
+[; ;interrupt.c: 87:             U_meas *= U_meas;
+[e =* _U_meas _U_meas ]
 "88
-[; ;interrupt.c: 88:             cnt_adc++;
-[e ++ _cnt_adc -> -> 1 `i `us ]
+[; ;interrupt.c: 88:             U_summ += U_meas;
+[e =+ _U_summ _U_meas ]
 "89
-[; ;interrupt.c: 89:         }
+[; ;interrupt.c: 89:             cnt_adc++;
+[e ++ _cnt_adc -> -> 1 `i `us ]
+"90
+[; ;interrupt.c: 90:         }
 }
 [e :U 296 ]
-"91
-[; ;interrupt.c: 91:         PIR1bits.ADIF = 0;
+"92
+[; ;interrupt.c: 92:         PIR1bits.ADIF = 0;
 [e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
-"94
-[; ;interrupt.c: 94:     }
+"95
+[; ;interrupt.c: 95:     }
 }
 [e :U 295 ]
-"99
-[; ;interrupt.c: 99:     if (TMR3IE && TMR3IF){
+"100
+[; ;interrupt.c: 100:     if (TMR3IE && TMR3IF){
 [e $ ! && _TMR3IE _TMR3IF 297  ]
 {
-"100
-[; ;interrupt.c: 100:         TMR3IF = 0;
-[e = _TMR3IF -> -> 0 `i `b ]
 "101
-[; ;interrupt.c: 101:         LATAbits.LA5 = 0;
-[e = . . _LATAbits 1 5 -> -> 0 `i `uc ]
+[; ;interrupt.c: 101:         TMR3IF = 0;
+[e = _TMR3IF -> -> 0 `i `b ]
 "102
-[; ;interrupt.c: 102:         TMR3ON = 0;
-[e = _TMR3ON -> -> 0 `i `b ]
+[; ;interrupt.c: 102:         LATAbits.LA5 = 0;
+[e = . . _LATAbits 1 5 -> -> 0 `i `uc ]
 "103
-[; ;interrupt.c: 103:     }
+[; ;interrupt.c: 103:         TMR3ON = 0;
+[e = _TMR3ON -> -> 0 `i `b ]
+"104
+[; ;interrupt.c: 104:     }
 }
 [e :U 297 ]
-"105
-[; ;interrupt.c: 105:     return;
-[e $UE 287  ]
 "106
-[; ;interrupt.c: 106: }
+[; ;interrupt.c: 106:     return;
+[e $UE 287  ]
+"107
+[; ;interrupt.c: 107: }
 [e :UE 287 ]
 }

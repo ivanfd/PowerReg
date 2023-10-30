@@ -5276,10 +5276,11 @@ void __attribute__((picinterrupt(("low_priority")))) Inter_lo(void) {
         if (sound_enable) {
             TMR2ON = 1;
             sound_delay++;
-            if (sound_delay <= 195) {
+            if (sound_delay <= 400) {
 
-                LATCbits.LATC5 = ~LATCbits.LATC5;
-            } else if ((sound_delay > 195)&&(sound_delay < 390))
+
+                LATCbits.LATC5 = 1;
+            } else if ((sound_delay > 400)&&(sound_delay < 800))
                 LATCbits.LATC5 = 0;
             else {
                 LATCbits.LATC5 = 0;

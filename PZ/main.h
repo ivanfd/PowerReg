@@ -91,7 +91,7 @@
 
 #define _XTAL_FREQ  64000000 // чатота контролера 64ћ√ц
 
-#define VERSION "19.06.22"
+#define VERSION "11.07.22"
 
 #define SetBit(x,y)    do{ x |=  (1 << (y));} while(0)
 #define ClrBit(x,y)    do{ x &= ~(1 << (y));} while(0)

@@ -73,6 +73,7 @@ uint8_t readTemp_Single(uint16_t *buf, uint8_t *minus, uint8_t *time_flag, uint8
             }
 
             if (ds18b20_crc8(scratch, 9)) { // перевіряємо контрольну суму
+                *time_flag = 0;
                 return ERR_CRC;
             }
             

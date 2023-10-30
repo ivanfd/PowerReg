@@ -11,7 +11,7 @@
  Intel Hex-file ranges:
   0h - 3h		(dist/default/production\PZ.production.hex)
   8h - Dh		(dist/default/production\PZ.production.hex)
-  18h - 3ECFh		(dist/default/production\PZ.production.hex)
+  18h - 3EC7h		(dist/default/production\PZ.production.hex)
   7DACh - 7FFFh		(dist/default/production\PZ.production.hex)
   200000h - 200007h		(dist/default/production\PZ.production.hex)
   300000h - 30000Dh		(dist/default/production\PZ.production.hex)
@@ -19,7 +19,7 @@
  Unused ranges:
   4h - 7h
   Eh - 17h
-  3ED0h - 7DABh
+  3EC8h - 7DABh
   8000h - 1FFFFFh
   200008h - 2FFFFFh
   30000Eh - EFFFFFh
@@ -1035,7 +1035,7 @@
 00003E90 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00003EA0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00003EB0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00003EC0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00003EC0 | H1 H1 H1 H1 H1 H1 H1 H1 -- -- -- -- -- -- -- --
 ----------------------------------------------------------
 00007DA0 | -- -- -- -- -- -- -- -- -- -- -- -- H1 H1 H1 H1
 00007DB0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1

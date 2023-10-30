@@ -5307,8 +5307,8 @@ uint8_t r_whole, r_dec;
 uint8_t sel_main = 0;
 uint32_t t_res;
 
-uint8_t const compile_date[12] = "Jun 20 2022";
-uint8_t const compile_time[9] = "20:14:09";
+uint8_t const compile_date[12] = "Jul 11 2022";
+uint8_t const compile_time[9] = "21:06:08";
 
 __asm("\tpsect eeprom_data,class=EEDATA,noexec"); __asm("\tdb\t" "24" "," "20" "," "33" "," "0" "," "0" "," "0" "," "0" "," "0");
 
@@ -5325,6 +5325,8 @@ const uint8_t symbol_5[8] = {0x00, 0x00, 0x1F, 0x1F, 0x1F, 0x00, 0x00, 0x00};
 const uint8_t symbol_6[8] = {0x00, 0x0E, 0x1F, 0x1B, 0x1F, 0x0E, 0x00, 0x00};
 const uint8_t symbol_7[8] = {0x06, 0x09, 0x09, 0x06, 0x00, 0x00, 0x00, 0x00};
 
+
+
 void main(void) {
 
     static __bit whole_dec = 0;
@@ -5340,7 +5342,7 @@ void main(void) {
     lcd_gotoxy(1, 1);
     lcdPrint("---BRESENHAM STAB---");
     lcd_gotoxy(1, 2);
-    sprintf(TxtBuf, "(c)Ivan_fd v%s", "19.06.22");
+    sprintf(TxtBuf, "(c)Ivan_fd v%s", "11.07.22");
     lcdPrint(TxtBuf);
     lcd_gotoxy(1, 3);
     sprintf(TxtBuf, "%s %s", compile_date, compile_time);
@@ -5357,7 +5359,7 @@ void main(void) {
     r_whole = read_eep(0);
     r_dec = read_eep(1);
     t_res = (uint32_t) r_whole * 1000 + r_dec * 10;
-# 125 "main.c"
+# 127 "main.c"
     while (1) {
         __asm(" clrwdt");
         if (read_key) {
@@ -5798,7 +5800,7 @@ void init_cpu(void) {
     getU = 1;
 
 }
-# 574 "main.c"
+# 576 "main.c"
 int8_t EncPoll(void) {
     static int8_t EncVal = 0;
     static uint8_t Enc = 0;
@@ -5849,43 +5851,55 @@ void show_lcd_main(void) {
     lcd_gotoxy(12, 4);
     lcd_putc('T');
     lcd_putc(':');
-    if (isTemp == 1) {
-        if (((temperature / 1000) % 10) == 0) {
-            if (((temperature / 100) % 10) == 0) {
-                lcd_putc(((temperature / 10) % 10) + 48);
-                lcd_putc('.');
-                lcd_putc((temperature % 10) + 48);
-                lcd_putc(7);
-                lcd_putc(' ');
-                lcd_putc(' ');
-                lcd_putc(' ');
+    if (TempEn) {
+        if (isTemp == 1) {
+            if (((temperature / 1000) % 10) == 0) {
+                if (((temperature / 100) % 10) == 0) {
+                    lcd_putc(((temperature / 10) % 10) + 48);
+                    lcd_putc('.');
+                    lcd_putc((temperature % 10) + 48);
+                    lcd_putc(7);
+                    lcd_putc(' ');
+                    lcd_putc(' ');
+                    lcd_putc(' ');
 
+                } else {
+                    lcd_putc(((temperature / 100) % 10) + 48);
+                    lcd_putc(((temperature / 10) % 10) + 48);
+                    lcd_putc('.');
+                    lcd_putc((temperature % 10) + 48);
+                    lcd_putc(7);
+                    lcd_putc(' ');
+                    lcd_putc(' ');
+
+                }
             } else {
+                lcd_putc(((temperature / 1000) % 10) + 48);
                 lcd_putc(((temperature / 100) % 10) + 48);
                 lcd_putc(((temperature / 10) % 10) + 48);
                 lcd_putc('.');
                 lcd_putc((temperature % 10) + 48);
                 lcd_putc(7);
                 lcd_putc(' ');
-                lcd_putc(' ');
 
             }
-        } else {
-            lcd_putc(((temperature / 1000) % 10) + 48);
-            lcd_putc(((temperature / 100) % 10) + 48);
-            lcd_putc(((temperature / 10) % 10) + 48);
-            lcd_putc('.');
-            lcd_putc((temperature % 10) + 48);
-            lcd_putc(7);
+        } else if (isTemp == 3) {
+            lcd_putc('?');
+            lcd_putc('?');
+            lcd_putc('?');
             lcd_putc(' ');
-
+            lcd_putc(' ');
+            lcd_putc(' ');
+            lcd_putc(' ');
+            sound_enable = 1;
+            TMR2ON = 1;
         }
-    } else if (isTemp == 3) {
-        lcd_putc('?');
-        lcd_putc('?');
-        lcd_putc('?');
-        lcd_putc(' ');
-        lcd_putc(' ');
+    } else {
+        lcd_putc('-');
+        lcd_putc('O');
+        lcd_putc('F');
+        lcd_putc('F');
+        lcd_putc('-');
         lcd_putc(' ');
         lcd_putc(' ');
     }
@@ -5893,7 +5907,7 @@ void show_lcd_main(void) {
     if ((tick_t1_1 <= 100) && (show_tp)) {
 
         pwr_dsp = calc_power((uint8_t) EncData, t_res, 220);
-        sprintf(TxtBuf, "ClcP:%c%04uW %c=%u.%u", 0x01, pwr_dsp, 0x02, r_whole, r_dec);
+        sprintf(TxtBuf, "ClcP:%c%-4uW %c=%u.%u", 0x01, pwr_dsp, 0x02, r_whole, r_dec);
         lcd_gotoxy(1, 3);
         lcdPrint(TxtBuf);
         if (is_power) {
@@ -5904,7 +5918,8 @@ void show_lcd_main(void) {
         lcd_gotoxy(1, 2);
         lcdPrint(TxtBuf);
     } else {
-        sprintf(TxtBuf, "ApxP:%c%04uW %c=%u.%u", 0x01, watt_disp, 0x02, r_whole, r_dec);
+
+        sprintf(TxtBuf, "ApxP:%c%-4uW %c=%u.%u", 0x01, watt_disp, 0x02, r_whole, r_dec);
         show_tp = 0;
         lcd_gotoxy(1, 3);
         lcdPrint(TxtBuf);
@@ -5913,9 +5928,9 @@ void show_lcd_main(void) {
         lcdPrint(TxtBuf);
         EncData = power;
     }
-# 700 "main.c"
+# 715 "main.c"
 }
-# 710 "main.c"
+# 725 "main.c"
 uint16_t calc_power(uint8_t pwr, uint32_t res, uint16_t u_rl) {
     uint32_t tt;
     uint16_t p_w;

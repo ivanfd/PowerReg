@@ -82,6 +82,8 @@ const uint8_t symbol_5[8] = {0x00, 0x00, 0x1F, 0x1F, 0x1F, 0x00, 0x00, 0x00}; //
 const uint8_t symbol_6[8] = {0x00, 0x0E, 0x1F, 0x1B, 0x1F, 0x0E, 0x00, 0x00}; // o
 const uint8_t symbol_7[8] = {0x06, 0x09, 0x09, 0x06, 0x00, 0x00, 0x00, 0x00};
 
+
+// початок тут
 void main(void) {
 
     static __bit whole_dec = 0; // признак, що будемо змінювати, цілі чи десяті
@@ -134,8 +136,8 @@ void main(void) {
         //if (meas_temp)
             isTempReady = readTemp_Single(&temperature, &minus, &time_flag, &timer_val);
 
-        if (TempEn) {
-            if ((temperature / 10) >= AlarmTemp) {
+        if (TempEn) { // якщо  дозволено аварійне відключення при перевищенні температури
+            if ((temperature / 10) >= AlarmTemp) { // якщо температура перевищила ліміт
                 powerOFF = 1; // вимикаємо навантаження до перезапуску, або натискання кнопки
                 sound_enable = 1; // вмикаємо пікалку
             }
@@ -177,7 +179,7 @@ void main(void) {
             U_summ = 0; // 
             getU = TRUE; // признак початку вимірів
             
-            if (powerOFF && TempEn)  
+            if (powerOFF && TempEn)  // якщо є аварійна ситуація і є дозвіл на аварійне вимкнення
                 t_power = 0; // вимикаємо тен
             else {
                 if (!power_100)
@@ -191,7 +193,7 @@ void main(void) {
                     is_stab = 1;
             }
             LATAbits.LA3 = !LATAbits.LA3; // контроль
-            watt_disp = calc_power(t_power, t_res, U_real);
+            watt_disp = calc_power(t_power, t_res, U_real); // розрахунок даних, для відображення
         }
 
         // вибір де будемо обертатись
@@ -621,43 +623,55 @@ void show_lcd_main(void) {
     lcd_gotoxy(12, 4);
     lcd_putc('T');
     lcd_putc(':');
-    if (isTemp == 1) {
-        if (((temperature / 1000) % 10) == 0) {
-            if (((temperature / 100) % 10) == 0) {
-                lcd_putc(((temperature / 10) % 10) + 48);
-                lcd_putc('.');
-                lcd_putc((temperature % 10) + 48);
-                lcd_putc(7);
-                lcd_putc(' ');
-                lcd_putc(' ');
-                lcd_putc(' ');
-                //lcd_putc(' ');
+    if (TempEn) { // якщо  дозволено аварійне відключення при перевищенні температури
+        if (isTemp == 1) {
+            if (((temperature / 1000) % 10) == 0) {
+                if (((temperature / 100) % 10) == 0) {
+                    lcd_putc(((temperature / 10) % 10) + 48);
+                    lcd_putc('.');
+                    lcd_putc((temperature % 10) + 48);
+                    lcd_putc(7);
+                    lcd_putc(' ');
+                    lcd_putc(' ');
+                    lcd_putc(' ');
+                    //lcd_putc(' ');
+                } else {
+                    lcd_putc(((temperature / 100) % 10) + 48);
+                    lcd_putc(((temperature / 10) % 10) + 48);
+                    lcd_putc('.');
+                    lcd_putc((temperature % 10) + 48);
+                    lcd_putc(7);
+                    lcd_putc(' ');
+                    lcd_putc(' ');
+                    //lcd_putc(' ');
+                }
             } else {
+                lcd_putc(((temperature / 1000) % 10) + 48);
                 lcd_putc(((temperature / 100) % 10) + 48);
                 lcd_putc(((temperature / 10) % 10) + 48);
                 lcd_putc('.');
                 lcd_putc((temperature % 10) + 48);
                 lcd_putc(7);
                 lcd_putc(' ');
-                lcd_putc(' ');
                 //lcd_putc(' ');
             }
-        } else {
-            lcd_putc(((temperature / 1000) % 10) + 48);
-            lcd_putc(((temperature / 100) % 10) + 48);
-            lcd_putc(((temperature / 10) % 10) + 48);
-            lcd_putc('.');
-            lcd_putc((temperature % 10) + 48);
-            lcd_putc(7);
+        } else if (isTemp == 3) {
+            lcd_putc('?');
+            lcd_putc('?');
+            lcd_putc('?');
             lcd_putc(' ');
-            //lcd_putc(' ');
+            lcd_putc(' ');
+            lcd_putc(' ');
+            lcd_putc(' ');
+            sound_enable = 1; // вмикаємо пікалку
+            TMR2ON = 1;
         }
-    } else if (isTemp == 3) {
-        lcd_putc('?');
-        lcd_putc('?');
-        lcd_putc('?');
-        lcd_putc(' ');
-        lcd_putc(' ');
+    } else {
+        lcd_putc('-');
+        lcd_putc('O');
+        lcd_putc('F');
+        lcd_putc('F');
+        lcd_putc('-');
         lcd_putc(' ');
         lcd_putc(' ');
     }
@@ -665,7 +679,7 @@ void show_lcd_main(void) {
     if ((tick_t1_1 <= 100) && (show_tp)) {
         //tick_t1_1 = 0;
         pwr_dsp = calc_power((uint8_t) EncData, t_res, 220);
-        sprintf(TxtBuf, "ClcP:%c%04uW %c=%u.%u", 0x01, pwr_dsp, 0x02, r_whole, r_dec);
+        sprintf(TxtBuf, "ClcP:%c%-4uW %c=%u.%u", 0x01, pwr_dsp, 0x02, r_whole, r_dec);
         lcd_gotoxy(1, 3);
         lcdPrint(TxtBuf);
         if (is_power) {
@@ -676,7 +690,8 @@ void show_lcd_main(void) {
         lcd_gotoxy(1, 2);
         lcdPrint(TxtBuf);        
     } else {
-        sprintf(TxtBuf, "ApxP:%c%04uW %c=%u.%u", 0x01, watt_disp, 0x02, r_whole, r_dec);
+       // sprintf(TxtBuf, "ApxP:%c%04uW %c=%u.%u", 0x01, watt_disp, 0x02, r_whole, r_dec);
+        sprintf(TxtBuf, "ApxP:%c%-4uW %c=%u.%u", 0x01, watt_disp, 0x02, r_whole, r_dec);
         show_tp = 0; // заборонити показ тимчасової потужності
         lcd_gotoxy(1, 3);
         lcdPrint(TxtBuf);

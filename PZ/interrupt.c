@@ -31,10 +31,11 @@ void __interrupt(low_priority) Inter_lo(void) {
         if (sound_enable) {
             TMR2ON = 1;
             sound_delay++;
-            if (sound_delay <= 195) {
+            if (sound_delay <= 400) {
                 //sound_delay = 0;
-                SOUND = ~SOUND;
-            } else if ((sound_delay > 195)&&(sound_delay < 390))
+                //SOUND = ~SOUND;
+                SOUND = 1;
+            } else if ((sound_delay > 400)&&(sound_delay < 800))
                 SOUND = 0;
             else {
                 SOUND = 0;
